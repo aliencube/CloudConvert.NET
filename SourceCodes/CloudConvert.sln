@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{977BE432-7E8A-4471-8CC7-D556E5EA94BA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_Documents", "00_Documents", "{C8867350-638D-4C05-9903-FA02454C44B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{CA46FE85-8F7C-4ED9-940F-B4E0B7BDE851}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Properties\SharedAssemblyInfo.cs = ..\Documents\Properties\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Configs", "01_Configs", "{B8B1FDEC-EB75-4043-A21B-834382D340E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Apps", "02_Apps", "{264B9759-407B-496F-B0E9-395469FB6A89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Services", "03_Services", "{9FDC0663-C2C3-4068-A655-091A22938AFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Models", "04_Models", "{399D7D68-3584-43E7-A8A2-86E91B227BAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Tests", "99_Tests", "{303DCC18-56B0-415C-92FD-314B5CE00EF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudConvert.Tests", "99_Tests\CloudConvert.Tests\CloudConvert.Tests.csproj", "{EDD09EEA-3746-4A95-9881-D078AC2E3B01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDD09EEA-3746-4A95-9881-D078AC2E3B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD09EEA-3746-4A95-9881-D078AC2E3B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD09EEA-3746-4A95-9881-D078AC2E3B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD09EEA-3746-4A95-9881-D078AC2E3B01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA46FE85-8F7C-4ED9-940F-B4E0B7BDE851} = {C8867350-638D-4C05-9903-FA02454C44B1}
+		{EDD09EEA-3746-4A95-9881-D078AC2E3B01} = {303DCC18-56B0-415C-92FD-314B5CE00EF3}
+	EndGlobalSection
+EndGlobal
