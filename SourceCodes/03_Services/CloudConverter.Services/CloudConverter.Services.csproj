@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EDD09EEA-3746-4A95-9881-D078AC2E3B01}</ProjectGuid>
+    <ProjectGuid>{FF4093B6-88E9-45EB-8503-D25E9BF46AA1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aliencube.CloudConvert.Tests</RootNamespace>
-    <AssemblyName>Aliencube.CloudConvert.Tests</AssemblyName>
+    <RootNamespace>Aliencube.CloudConverter.Services</RootNamespace>
+    <AssemblyName>Aliencube.CloudConverter.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,37 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions.Core">
-      <HintPath>..\..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -76,20 +48,42 @@
     <Compile Include="..\..\..\Documents\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ConverterTest.cs" />
+    <Compile Include="Requests\BaseRequest.cs" />
+    <Compile Include="Responses\BaseResponse.cs" />
+    <Compile Include="Responses\ConvertResponse.cs" />
+    <Compile Include="Responses\ConvertResponseExtended.cs" />
+    <Compile Include="Options\ConversionParameters.cs" />
+    <Compile Include="ConverterWrapper.cs" />
+    <Compile Include="Requests\ConvertRequest.cs" />
+    <Compile Include="DataFormats\Archive.cs" />
+    <Compile Include="DataFormats\Audio.cs" />
+    <Compile Include="DataFormats\Cad.cs" />
+    <Compile Include="DataFormats\Document.cs" />
+    <Compile Include="DataFormats\Ebook.cs" />
+    <Compile Include="DataFormats\Font.cs" />
+    <Compile Include="DataFormats\Formats.cs" />
+    <Compile Include="Options\DownloadMethod.cs" />
+    <Compile Include="Extensions\EnumConverterExtension.cs" />
+    <Compile Include="Options\InputMethod.cs" />
+    <Compile Include="Options\InputParameters.cs" />
+    <Compile Include="Interfaces\IConverterWrapper.cs" />
+    <Compile Include="Interfaces\IFormats.cs" />
+    <Compile Include="DataFormats\Image.cs" />
+    <Compile Include="DataFormats\Presentation.cs" />
+    <Compile Include="Options\OutputParameters.cs" />
+    <Compile Include="Options\OutputStorage.cs" />
+    <Compile Include="Requests\ProcessRequest.cs" />
+    <Compile Include="Responses\ProcessResponse.cs" />
+    <Compile Include="DataFormats\Spreadsheet.cs" />
+    <Compile Include="DataFormats\Vector.cs" />
+    <Compile Include="DataFormats\Video.cs" />
+    <Compile Include="DataFormats\Website.cs" />
+    <Compile Include="LowercaseContractResolver.cs" />
+    <Compile Include="Options\ConverterOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\03_Services\CloudConverter.Services\CloudConverter.Services.csproj">
-      <Project>{ff4093b6-88e9-45eb-8503-d25e9bf46aa1}</Project>
-      <Name>CloudConverter.Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
