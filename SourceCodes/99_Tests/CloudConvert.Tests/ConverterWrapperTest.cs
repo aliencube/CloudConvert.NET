@@ -1,7 +1,10 @@
-﻿using Aliencube.CloudConverter.Wrapper;
+﻿using System;
+using Aliencube.CloudConverter.Wrapper;
 using Aliencube.CloudConverter.Wrapper.DataFormats;
+using Aliencube.CloudConverter.Wrapper.Exceptions;
 using Aliencube.CloudConverter.Wrapper.Interfaces;
 using Aliencube.CloudConverter.Wrapper.Options;
+using Aliencube.CloudConverter.Wrapper.Responses;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -38,8 +41,20 @@ namespace Aliencube.CloudConvert.Tests
         public async void GetProcessId_GivenApiKey_ReturnResult()
         {
             var formats = new Formats();
-            var response = await this._wrapper.GetProcessResponseAsync(formats.Document.Md, formats.Document.Docx);
-            response.Id.Should().NotBeNullOrEmpty();
+            try
+            {
+                var response = await this._wrapper.GetProcessResponseAsync(formats.Document.Md, formats.Document.Docx);
+                response.Id.Should().NotBeNullOrEmpty();
+            }
+            catch (Exception ex)
+            {
+                var error = ex as ErrorResponseException;
+                error.Should().NotBeNull();
+
+                var response = error.Error;
+                response.Should().BeOfType<ErrorResponse>();
+                response.Code.Should().NotBe(200);
+            }
         }
     }
 }

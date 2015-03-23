@@ -1,8 +1,10 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Aliencube.CloudConverter.Wrapper.Exceptions;
 using Aliencube.CloudConverter.Wrapper.Extensions;
 using Aliencube.CloudConverter.Wrapper.Interfaces;
 using Aliencube.CloudConverter.Wrapper.Options;
@@ -111,6 +113,12 @@ namespace Aliencube.CloudConverter.Wrapper
                 using (var response = await client.PostAsync(processUrl, content))
                 {
                     var result = await response.Content.ReadAsStringAsync();
+
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        var error = this.Deserialise<ErrorResponse>(result);
+                        throw new ErrorResponseException(error);
+                    }
                     deserialised = this.Deserialise<ProcessResponse>(result);
                 }
             }
