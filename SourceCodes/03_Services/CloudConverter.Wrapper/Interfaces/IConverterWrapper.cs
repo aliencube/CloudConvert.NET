@@ -29,6 +29,15 @@ namespace Aliencube.CloudConverter.Wrapper.Interfaces
         Task<ProcessResponse> GetProcessResponseAsync(string inputFormat, string outputFormat);
 
         /// <summary>
+        /// Gets the <c>ConvertRequest</c> object.
+        /// </summary>
+        /// <param name="input"><c>InputParameters</c> object.</param>
+        /// <param name="output"><c>OutputParameters</c> object.</param>
+        /// <param name="conversion"><c>ConversionParameters</c> object.</param>
+        /// <returns>Returns the <c>ConvertRequest</c> object.</returns>
+        ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters<T> conversion);
+
+        /// <summary>
         /// Converts the requested file to a designated format.
         /// </summary>
         /// <param name="request"><c>ConvertRequest</c> object.</param>

@@ -45,9 +45,16 @@ namespace Aliencube.CloudConverter.Wrapper
         /// </summary>
         private void InitialiseMapper()
         {
-            Mapper.CreateMap<InputParameters, ConvertRequest>();
-            Mapper.CreateMap<OutputParameters, ConvertRequest>();
-            Mapper.CreateMap<ConversionParameters<T>, ConvertRequest>();
+            Mapper.CreateMap<InputParameters, ConvertRequest>()
+                  .ForMember(d => d.InputMethod, o => o.MapFrom(s => s.InputMethod.ToLower()));
+            Mapper.CreateMap<OutputParameters, ConvertRequest>()
+                  .ForMember(d => d.Email, o => o.MapFrom(s => s.Email ? s.Email : (bool?) null))
+                  .ForMember(d => d.OutputStorage, o => o.MapFrom(s => s.OutputStorage != OutputStorage.None ? s.OutputStorage.ToLower() : null))
+                  .ForMember(d => d.Wait, o => o.MapFrom(s => s.Wait ? s.Wait : (bool?)null))
+                  .ForMember(d => d.DownloadMethod, o => o.MapFrom(s => s.DownloadMethod.ToLower()))
+                  .ForMember(d => d.SaveToServer, o => o.MapFrom(s => s.SaveToServer ? s.SaveToServer : (bool?) null));
+            Mapper.CreateMap<ConversionParameters<T>, ConvertRequest>()
+                  .ForMember(d => d.Timeout, o => o.MapFrom(s => s.Timeout > 0 ? s.Timeout : (int?) null));
         }
 
         /// <summary>
@@ -159,7 +166,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the <c>ConvertRequest</c> object.</returns>
-        private ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
+        public ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
         {
             var request = Mapper.Map<ConvertRequest>(input)
                                 .Map(output)
