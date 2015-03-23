@@ -3,6 +3,11 @@
 **CloudConver.NET** provides a .NET wrapper library for [CloudConvert API](http://cloudconvert.com).
 
 
+## Package Status ##
+
+* **CloudConvert.NET** [![](https://img.shields.io/nuget/v/Aliencube.CloudConvert.NET.svg)](https://www.nuget.org/packages/Aliencube.CloudConvert.NET/) [![](https://img.shields.io/nuget/dt/Aliencube.CloudConvert.NET.svg)](https://www.nuget.org/packages/Aliencube.CloudConvert.NET/)
+
+
 ## Getting Started ##
 
 **CloudConvert.NET** is easy to use. The following example code is to show how to convert a [Markdown](http://daringfireball.net/projects/markdown/) document to an [MS Word](https://products.office.com/en-us/word) one and store it to [OneDrive](https://onedrive.live.com).
