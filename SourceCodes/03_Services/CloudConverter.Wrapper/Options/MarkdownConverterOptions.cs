@@ -10,7 +10,7 @@ namespace Aliencube.CloudConverter.Wrapper.Options
         /// <summary>
         /// Gets or sets the input markdown syntax.
         /// </summary>
-        [JsonProperty(PropertyName = "input_markdown_syntax")]
+        [JsonProperty(PropertyName = "input_markdown_syntax", NullValueHandling = NullValueHandling.Include)]
         public string InputMarkdownSyntax { get; set; }
 
         /// <summary>

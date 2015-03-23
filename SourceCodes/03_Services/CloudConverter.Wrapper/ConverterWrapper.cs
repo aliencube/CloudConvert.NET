@@ -64,7 +64,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the conversion response.</returns>
-        public async Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
+        public async Task<ConvertResponse> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
         {
             if (input == null)
             {
@@ -180,7 +180,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <param name="request"><c>ConvertRequest</c> object.</param>
         /// <param name="convertUrl">Process URL to convert.</param>
         /// <returns></returns>
-        public async Task<ConvertResponseExtended> ConvertAsync(ConvertRequest request, string convertUrl)
+        public async Task<ConvertResponse> ConvertAsync(ConvertRequest request, string convertUrl)
         {
             if (request == null)
             {
@@ -193,14 +193,21 @@ namespace Aliencube.CloudConverter.Wrapper
             }
 
             var serialised = this.Serialise(request);
-            ConvertResponseExtended deserialised;
+            ConvertResponse deserialised;
 
             using (var client = new HttpClient())
             using (var content = new StringContent(serialised, Encoding.UTF8, "application/json"))
             using (var response = await client.PostAsync(convertUrl, content))
             {
                 var result = await response.Content.ReadAsStringAsync();
-                deserialised = this.Deserialise<ConvertResponseExtended>(result);
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var error = this.Deserialise<ErrorResponse>(result);
+                    throw new ErrorResponseException(error);
+                }
+                deserialised = this.Deserialise<ConvertResponse>(result);
+                deserialised.Code = (int) response.StatusCode;
             }
 
             return deserialised;
@@ -212,7 +219,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <typeparam name="TRequest">Request object type.</typeparam>
         /// <param name="request">Request object.</param>
         /// <returns>Returns the JSON-serialised string.</returns>
-        private string Serialise<TRequest>(TRequest request) where TRequest : BaseRequest
+        public string Serialise<TRequest>(TRequest request) where TRequest : BaseRequest
         {
             if (request == null)
             {
@@ -233,7 +240,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <typeparam name="TResponse">Response object type.</typeparam>
         /// <param name="value">JSON serialised string.</param>
         /// <returns>Returns a deserialised object.</returns>
-        private TResponse Deserialise<TResponse>(string value) where TResponse : BaseResponse
+        public TResponse Deserialise<TResponse>(string value) where TResponse : BaseResponse
         {
             var deserialised = JsonConvert.DeserializeObject<TResponse>(value);
             return deserialised;

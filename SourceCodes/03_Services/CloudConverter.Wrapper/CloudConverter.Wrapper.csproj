@@ -68,7 +68,6 @@
     <Compile Include="Requests\ConvertRequestSerialiseOptions.cs" />
     <Compile Include="Responses\BaseResponse.cs" />
     <Compile Include="Responses\ConvertResponse.cs" />
-    <Compile Include="Responses\ConvertResponseExtended.cs" />
     <Compile Include="Options\ConversionParameters.cs" />
     <Compile Include="ConverterWrapper.cs" />
     <Compile Include="Requests\ConvertRequest.cs" />

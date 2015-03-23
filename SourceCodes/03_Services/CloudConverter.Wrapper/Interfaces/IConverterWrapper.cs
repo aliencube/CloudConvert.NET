@@ -18,7 +18,7 @@ namespace Aliencube.CloudConverter.Wrapper.Interfaces
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the conversion response.</returns>
-        Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion);
+        Task<ConvertResponse> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion);
 
         /// <summary>
         /// Gets the <c>ProcessResponse</c> to be consumed in subsequent requests.
@@ -42,7 +42,23 @@ namespace Aliencube.CloudConverter.Wrapper.Interfaces
         /// </summary>
         /// <param name="request"><c>ConvertRequest</c> object.</param>
         /// <param name="convertUrl">Process URL to convert.</param>
-        /// <returns></returns>
-        Task<ConvertResponseExtended> ConvertAsync(ConvertRequest request, string convertUrl);
+        /// <returns>Returns the conversion response.</returns>
+        Task<ConvertResponse> ConvertAsync(ConvertRequest request, string convertUrl);
+
+        /// <summary>
+        /// Serialises the request object in JSON format.
+        /// </summary>
+        /// <typeparam name="TRequest">Request object type.</typeparam>
+        /// <param name="request">Request object.</param>
+        /// <returns>Returns the JSON-serialised string.</returns>
+        string Serialise<TRequest>(TRequest request) where TRequest : BaseRequest;
+
+        /// <summary>
+        /// Deserialises the JSON serialised string into a designated type.
+        /// </summary>
+        /// <typeparam name="TResponse">Response object type.</typeparam>
+        /// <param name="value">JSON serialised string.</param>
+        /// <returns>Returns a deserialised object.</returns>
+        TResponse Deserialise<TResponse>(string value) where TResponse : BaseResponse;
     }
 }
