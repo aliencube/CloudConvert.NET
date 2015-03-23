@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace Aliencube.CloudConvert.Tests
 {
     [TestFixture]
-    public class ConverterTest
+    public class ConverterWrapperTest
     {
         private IConverterSettings _settings;
         private IConverterWrapper<MarkdownConverterOptions> _wrapper;
