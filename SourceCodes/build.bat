@@ -11,7 +11,7 @@ IF NOT EXIST %MSBUILDDIR%nul goto MissingMSBuildToolsPath
 IF NOT EXIST %MSBUILDDIR%msbuild.exe goto MissingMSBuildExe
 
 ::BUILD
-"tools\nuget.exe" restore EntityContextLibrary.sln
+"tools\nuget.exe" restore CloudConvert.sln
 "%MSBUILDDIR%msbuild.exe" "03_Services\CloudConvert.Wrapper\CloudConvert.Wrapper.csproj" /t:ReBuild /p:Configuration=Release;TargetFrameworkVersion=v4.5;DefineConstants="TRACE;NET45";OutPutPath=bin\Release\net45\;DocumentationFile=bin\Release\net45\Aliencube.CloudConvert.Wrapper.xml
 
 mkdir build
