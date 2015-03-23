@@ -1,5 +1,8 @@
 namespace Aliencube.CloudConvert.Wrapper.Options
 {
+    /// <summary>
+    /// This determines the output storage.
+    /// </summary>
     public enum OutputStorage
     {
         /// <summary>
