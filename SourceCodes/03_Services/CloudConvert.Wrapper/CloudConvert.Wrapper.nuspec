@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>Aliencube.CloudConvert.NET</id>
+        <version>0.5.0.0</version>
+        <title>CloudConvert.NET</title>
+        <authors>Aliencube Community</authors>
+        <owners>aliencube</owners>
+        <licenseUrl>https://github.com/aliencube/CloudConvert.NET/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/aliencube/CloudConvert.NET</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>CloudConvert.NET provides a .NET wrapper library for CloudConvert (http://cloudconvert.com) API.</description>
+        <copyright>Aliencube Community Copyright 2015</copyright>
+        <tags>Aliencube, CloudConvert</tags>
+        <dependencies>
+            <dependency id="AutoMapper" version="3.0.0" />
+            <dependency id="Newtonsoft.Json" version="6.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\**\Aliencube.CloudConvert.Wrapper.*" target="lib" />
+    </files>
+</package>
