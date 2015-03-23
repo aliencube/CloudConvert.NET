@@ -20,7 +20,7 @@ namespace Aliencube.CloudConverter.Wrapper.Options
         /// <summary>
         /// Gets or sets the preset Id, which is predefined at the dashboard, https://cloudconvert.com/preset.
         /// </summary>
-        public string Preset { get; set; }
+        public string PresetId { get; set; }
 
         /// <summary>
         /// Gets or sets the timeout value in second. As default, account wide timeout value is used.

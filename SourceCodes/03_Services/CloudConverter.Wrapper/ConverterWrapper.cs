@@ -3,10 +3,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Aliencube.CloudConverter.Wrapper.Extensions;
 using Aliencube.CloudConverter.Wrapper.Interfaces;
 using Aliencube.CloudConverter.Wrapper.Options;
 using Aliencube.CloudConverter.Wrapper.Requests;
 using Aliencube.CloudConverter.Wrapper.Responses;
+using AutoMapper;
 using Newtonsoft.Json;
 
 namespace Aliencube.CloudConverter.Wrapper
@@ -32,6 +34,18 @@ namespace Aliencube.CloudConverter.Wrapper
             }
 
             this._settings = settings;
+
+            this.InitialiseMapper();
+        }
+
+        /// <summary>
+        /// Initialises the mapper definitions.
+        /// </summary>
+        private void InitialiseMapper()
+        {
+            Mapper.CreateMap<InputParameters, ConvertRequest>();
+            Mapper.CreateMap<OutputParameters, ConvertRequest>();
+            Mapper.CreateMap<ConversionParameters, ConvertRequest>();
         }
 
         /// <summary>
@@ -59,15 +73,7 @@ namespace Aliencube.CloudConverter.Wrapper
             }
 
             var processResponse = await this.GetProcessResponseAsync(input.InputFormat, conversion.OutputFormat);
-            var convertRequest = new ConvertRequest()
-                                 {
-                                     Input = input.InputMethod,
-                                     File = input.Filepath,
-                                     Filename = input.Filename,
-                                     OutputFormat = conversion.OutputFormat,
-                                     ConverterOptions = conversion.ConverterOptions,
-                                     Download = output.Download,
-                                 };
+            var convertRequest = this.GetConvertRequest(input, output, conversion);
             var convertResponse = await this.ConvertAsync(convertRequest, String.Format("https:{0}", processResponse.Url));
             return convertResponse;
         }
@@ -90,6 +96,9 @@ namespace Aliencube.CloudConverter.Wrapper
                 throw new ArgumentNullException("outputFormat");
             }
 
+            var request = this.GetProcessRequest(inputFormat, outputFormat);
+            var serialised = this.Serialise(request);
+
             var apiKey = this._settings.Basic.ApiKey.Value;
             var processUrl = this._settings.Basic.ProcessUrl;
 
@@ -97,13 +106,6 @@ namespace Aliencube.CloudConverter.Wrapper
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-
-                var request = new ProcessRequest()
-                              {
-                                  InputFormat = inputFormat,
-                                  OutputFormat = outputFormat
-                              };
-                var serialised = this.Serialise(request);
 
                 using (var content = new StringContent(serialised, Encoding.UTF8, "application/json"))
                 using (var response = await client.PostAsync(processUrl, content))
@@ -114,6 +116,47 @@ namespace Aliencube.CloudConverter.Wrapper
             }
 
             return deserialised;
+        }
+
+        /// <summary>
+        /// Gets the <c>ProcessRequest</c> object.
+        /// </summary>
+        /// <param name="inputFormat">Input file format.</param>
+        /// <param name="outputFormat">Output file format.</param>
+        /// <returns>Returns the <c>ProcessRequest</c> object.</returns>
+        private ProcessRequest GetProcessRequest(string inputFormat, string outputFormat)
+        {
+            if (String.IsNullOrWhiteSpace(inputFormat))
+            {
+                throw new ArgumentNullException("inputFormat");
+            }
+
+            if (String.IsNullOrWhiteSpace(outputFormat))
+            {
+                throw new ArgumentNullException("outputFormat");
+            }
+
+            var request = new ProcessRequest()
+                          {
+                              InputFormat = inputFormat,
+                              OutputFormat = outputFormat
+                          };
+            return request;
+        }
+
+        /// <summary>
+        /// Gets the <c>ConvertRequest</c> object.
+        /// </summary>
+        /// <param name="input"><c>InputParameters</c> object.</param>
+        /// <param name="output"><c>OutputParameters</c> object.</param>
+        /// <param name="conversion"><c>ConversionParameters</c> object.</param>
+        /// <returns>Returns the <c>ConvertRequest</c> object.</returns>
+        private ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters conversion)
+        {
+            var request = Mapper.Map<ConvertRequest>(input)
+                                .Map(output)
+                                .Map(conversion);
+            return request;
         }
 
         /// <summary>

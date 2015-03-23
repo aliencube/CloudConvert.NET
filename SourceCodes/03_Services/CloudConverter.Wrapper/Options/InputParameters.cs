@@ -13,7 +13,7 @@ namespace Aliencube.CloudConverter.Wrapper.Options
         /// <summary>
         /// Gets or sets the input method dederived from <c>InputMethod</c> enum value.
         /// </summary>
-        public string InputMethod { get; set; }
+        public InputMethod InputMethod { get; set; }
 
         /// <summary>
         /// Gets or sets the filepath. This is usualy a URL.
