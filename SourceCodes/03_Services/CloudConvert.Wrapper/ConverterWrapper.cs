@@ -18,7 +18,7 @@ namespace Aliencube.CloudConvert.Wrapper
     /// <summary>
     /// This represents the converter wrapper entity.
     /// </summary>
-    public class ConverterWrapper<T> : IConverterWrapper<T> where T : BaseConverterOptions
+    public class ConverterWrapper : IConverterWrapper
     {
         private readonly IConverterSettings _settings;
 
@@ -53,7 +53,7 @@ namespace Aliencube.CloudConvert.Wrapper
                   .ForMember(d => d.Wait, o => o.MapFrom(s => s.Wait ? s.Wait : (bool?)null))
                   .ForMember(d => d.DownloadMethod, o => o.MapFrom(s => s.DownloadMethod.ToLower()))
                   .ForMember(d => d.SaveToServer, o => o.MapFrom(s => s.SaveToServer ? s.SaveToServer : (bool?)null));
-            Mapper.CreateMap<ConversionParameters<T>, ConvertRequest>()
+            Mapper.CreateMap<ConversionParameters, ConvertRequest>()
                   .ForMember(d => d.Timeout, o => o.MapFrom(s => s.Timeout > 0 ? s.Timeout : (int?)null));
         }
 
@@ -64,7 +64,7 @@ namespace Aliencube.CloudConvert.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the conversion response.</returns>
-        public async Task<ConvertResponse> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
+        public async Task<ConvertResponse> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters conversion)
         {
             if (input == null)
             {
@@ -166,7 +166,7 @@ namespace Aliencube.CloudConvert.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the <c>ConvertRequest</c> object.</returns>
-        public ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
+        public ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters conversion)
         {
             var request = Mapper.Map<ConvertRequest>(input)
                                 .Map(output)

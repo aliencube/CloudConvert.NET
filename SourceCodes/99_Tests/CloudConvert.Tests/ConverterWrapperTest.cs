@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Aliencube.CloudConvert.Wrapper;
 using Aliencube.CloudConvert.Wrapper.DataFormats;
 using Aliencube.CloudConvert.Wrapper.Exceptions;
@@ -16,10 +17,10 @@ namespace Aliencube.CloudConvert.Tests
     {
         private IConverterSettings _settings;
         private IFormats _formats;
-        private IConverterWrapper<MarkdownConverterOptions> _wrapper;
+        private IConverterWrapper _wrapper;
         private InputParameters _input;
         private OutputParameters _output;
-        private ConversionParameters<MarkdownConverterOptions> _conversion;
+        private ConversionParameters _conversion;
 
         [SetUp]
         public void Init()
@@ -27,7 +28,7 @@ namespace Aliencube.CloudConvert.Tests
             // MAKE SURE before you run this test, you MUST change the API key to yours; otherwise the test fails.
             this._settings = ConverterSettings.CreateInstance();
             this._formats = new Formats();
-            this._wrapper = new ConverterWrapper<MarkdownConverterOptions>(this._settings);
+            this._wrapper = new ConverterWrapper(this._settings);
 
             this._input = new InputParameters()
                           {
@@ -41,7 +42,7 @@ namespace Aliencube.CloudConvert.Tests
                                DownloadMethod = DownloadMethod.False,
                                OutputStorage = OutputStorage.OneDrive,
                            };
-            this._conversion = new ConversionParameters<MarkdownConverterOptions>()
+            this._conversion = new ConversionParameters()
                                {
                                    OutputFormat = this._formats.Document.Docx,
                                    ConverterOptions = new MarkdownConverterOptions()
@@ -92,12 +93,37 @@ namespace Aliencube.CloudConvert.Tests
         [Test]
         public void GetConvertRequest_GivenParameters_ReturnConvertRequest()
         {
-            var request = this._wrapper.GetConvertRequest(this._input, this._output, this._conversion);
+            var conversion = new ConversionParameters()
+                             {
+                                 OutputFormat = this._formats.Document.Docx,
+                                 ConverterOptions = new MarkdownConverterOptions()
+                                                    {
+                                                        InputMarkdownSyntax = MarkdownSyntaxType.Auto
+                                                    },
+                             };
+            var request = this._wrapper.GetConvertRequest(this._input, this._output, conversion);
             request.InputMethod.Should().Be(InputMethod.Download.ToLower());
             request.OutputStorage.Should().Be(OutputStorage.OneDrive.ToLower());
 
-            var serialised = this._wrapper.Serialise(request);
-            serialised.Should().Contain("input_markdown_syntax");
+            var serialised1 = this._wrapper.Serialise(request);
+            serialised1.Should().Contain("input_markdown_syntax");
+
+            conversion = new ConversionParameters()
+                         {
+                             OutputFormat = this._formats.Document.Docx,
+                             ConverterOptions = new Dictionary<string, object>()
+                                                {
+                                                    { "input_markdown_syntax", MarkdownSyntaxType.Auto },
+                                                },
+                         };
+            request = this._wrapper.GetConvertRequest(this._input, this._output, conversion);
+            request.InputMethod.Should().Be(InputMethod.Download.ToLower());
+            request.OutputStorage.Should().Be(OutputStorage.OneDrive.ToLower());
+
+            var serialised2 = this._wrapper.Serialise(request);
+            serialised2.Should().Contain("input_markdown_syntax");
+
+            serialised1.Should().BeEquivalentTo(serialised2);
         }
 
         [Test]

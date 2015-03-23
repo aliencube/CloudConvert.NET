@@ -3,7 +3,7 @@ namespace Aliencube.CloudConvert.Wrapper.Options
     /// <summary>
     /// This represents the conversion parameters entity.
     /// </summary>
-    public class ConversionParameters<T> where T : BaseConverterOptions
+    public class ConversionParameters
     {
         /// <summary>
         /// Gets or sets the output format.
@@ -13,7 +13,7 @@ namespace Aliencube.CloudConvert.Wrapper.Options
         /// <summary>
         /// Gets or sets the converter options. This is conversion type specific.
         /// </summary>
-        public T ConverterOptions { get; set; }
+        public object ConverterOptions { get; set; }
 
         /// <summary>
         /// Gets or sets the preset Id, which is predefined at the dashboard, https://cloudconvert.com/preset.
