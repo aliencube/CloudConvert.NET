@@ -57,6 +57,7 @@
     <Compile Include="ConfigElements\ApiKeyElement.cs" />
     <Compile Include="ConfigElements\BasicElement.cs" />
     <Compile Include="ConverterSettings.cs" />
+    <Compile Include="Exceptions\ErrorResponseException.cs" />
     <Compile Include="Extensions\AutoMapperExtension.cs" />
     <Compile Include="Interfaces\IConverterSettings.cs" />
     <Compile Include="Options\BaseConverterOptions.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Options\OutputParameters.cs" />
     <Compile Include="Options\OutputStorage.cs" />
     <Compile Include="Requests\ProcessRequest.cs" />
+    <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\ProcessResponse.cs" />
     <Compile Include="DataFormats\Spreadsheet.cs" />
     <Compile Include="DataFormats\Vector.cs" />
