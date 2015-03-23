@@ -1,5 +1,5 @@
-﻿using Aliencube.CloudConverter.Wrapper;
-using Aliencube.CloudConverter.Wrapper.Interfaces;
+﻿using Aliencube.CloudConvert.Wrapper;
+using Aliencube.CloudConvert.Wrapper.Interfaces;
 using FluentAssertions;
 using NUnit.Framework;
 

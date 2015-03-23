@@ -87,9 +87,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\03_Services\CloudConverter.Wrapper\CloudConverter.Wrapper.csproj">
+    <ProjectReference Include="..\..\03_Services\CloudConvert.Wrapper\CloudConvert.Wrapper.csproj">
       <Project>{ff4093b6-88e9-45eb-8503-d25e9bf46aa1}</Project>
-      <Name>CloudConverter.Wrapper</Name>
+      <Name>CloudConvert.Wrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

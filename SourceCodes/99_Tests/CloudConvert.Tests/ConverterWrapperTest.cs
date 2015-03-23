@@ -1,11 +1,11 @@
 ﻿using System;
-using Aliencube.CloudConverter.Wrapper;
-using Aliencube.CloudConverter.Wrapper.DataFormats;
-using Aliencube.CloudConverter.Wrapper.Exceptions;
-using Aliencube.CloudConverter.Wrapper.Extensions;
-using Aliencube.CloudConverter.Wrapper.Interfaces;
-using Aliencube.CloudConverter.Wrapper.Options;
-using Aliencube.CloudConverter.Wrapper.Responses;
+using Aliencube.CloudConvert.Wrapper;
+using Aliencube.CloudConvert.Wrapper.DataFormats;
+using Aliencube.CloudConvert.Wrapper.Exceptions;
+using Aliencube.CloudConvert.Wrapper.Extensions;
+using Aliencube.CloudConvert.Wrapper.Interfaces;
+using Aliencube.CloudConvert.Wrapper.Options;
+using Aliencube.CloudConvert.Wrapper.Responses;
 using FluentAssertions;
 using NUnit.Framework;
 

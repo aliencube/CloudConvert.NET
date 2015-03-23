@@ -9,6 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{977BE4
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_Documents", "00_Documents", "{C8867350-638D-4C05-9903-FA02454C44B1}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{CA46FE85-8F7C-4ED9-940F-B4E0B7BDE851}"
 	ProjectSection(SolutionItems) = preProject
@@ -21,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Apps", "02_Apps", "{264B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Services", "03_Services", "{9FDC0663-C2C3-4068-A655-091A22938AFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudConverter.Wrapper", "03_Services\CloudConverter.Wrapper\CloudConverter.Wrapper.csproj", "{FF4093B6-88E9-45EB-8503-D25E9BF46AA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudConvert.Wrapper", "03_Services\CloudConvert.Wrapper\CloudConvert.Wrapper.csproj", "{FF4093B6-88E9-45EB-8503-D25E9BF46AA1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Models", "04_Models", "{399D7D68-3584-43E7-A8A2-86E91B227BAF}"
 EndProject
