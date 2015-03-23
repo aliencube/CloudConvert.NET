@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using System;
+using Aliencube.CloudConverter.Wrapper.Options;
 using Newtonsoft.Json;
 
 namespace Aliencube.CloudConverter.Wrapper.Requests
@@ -40,7 +41,7 @@ namespace Aliencube.CloudConverter.Wrapper.Requests
         /// <summary>
         /// Gets or sets the converter options. This is conversion type specific.
         /// </summary>
-        public Dictionary<string, object> ConverterOptions { get; set; }
+        public object ConverterOptions { get; set; }
 
         /// <summary>
         /// Gets or sets the preset Id, which is predefined at the dashboard, https://cloudconvert.com/preset.

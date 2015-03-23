@@ -1,6 +1,7 @@
 ﻿using Aliencube.CloudConverter.Wrapper;
 using Aliencube.CloudConverter.Wrapper.DataFormats;
 using Aliencube.CloudConverter.Wrapper.Interfaces;
+using Aliencube.CloudConverter.Wrapper.Options;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -10,13 +11,13 @@ namespace Aliencube.CloudConvert.Tests
     public class ConverterTest
     {
         private IConverterSettings _settings;
-        private IConverterWrapper _wrapper;
+        private IConverterWrapper<MarkdownConverterOptions> _wrapper;
 
         [SetUp]
         public void Init()
         {
             this._settings = ConverterSettings.CreateInstance();
-            this._wrapper = new ConverterWrapper(this._settings);
+            this._wrapper = new ConverterWrapper<MarkdownConverterOptions>(this._settings);
         }
 
         [TearDown]

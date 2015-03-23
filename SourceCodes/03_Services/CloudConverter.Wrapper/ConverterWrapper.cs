@@ -16,7 +16,7 @@ namespace Aliencube.CloudConverter.Wrapper
     /// <summary>
     /// This represents the converter wrapper entity.
     /// </summary>
-    public class ConverterWrapper : IConverterWrapper
+    public class ConverterWrapper<T> : IConverterWrapper<T> where T : BaseConverterOptions
     {
         private readonly IConverterSettings _settings;
 
@@ -45,7 +45,7 @@ namespace Aliencube.CloudConverter.Wrapper
         {
             Mapper.CreateMap<InputParameters, ConvertRequest>();
             Mapper.CreateMap<OutputParameters, ConvertRequest>();
-            Mapper.CreateMap<ConversionParameters, ConvertRequest>();
+            Mapper.CreateMap<ConversionParameters<T>, ConvertRequest>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the conversion response.</returns>
-        public async Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters conversion)
+        public async Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
         {
             if (input == null)
             {
@@ -151,7 +151,7 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the <c>ConvertRequest</c> object.</returns>
-        private ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters conversion)
+        private ConvertRequest GetConvertRequest(InputParameters input, OutputParameters output, ConversionParameters<T> conversion)
         {
             var request = Mapper.Map<ConvertRequest>(input)
                                 .Map(output)
@@ -194,10 +194,10 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <summary>
         /// Serialises the request object in JSON format.
         /// </summary>
-        /// <typeparam name="T">Request object type.</typeparam>
+        /// <typeparam name="TRequest">Request object type.</typeparam>
         /// <param name="request">Request object.</param>
         /// <returns>Returns the JSON-serialised string.</returns>
-        private string Serialise<T>(T request) where T : BaseRequest
+        private string Serialise<TRequest>(TRequest request) where TRequest : BaseRequest
         {
             if (request == null)
             {
@@ -215,12 +215,12 @@ namespace Aliencube.CloudConverter.Wrapper
         /// <summary>
         /// Deserialises the JSON serialised string into a designated type.
         /// </summary>
-        /// <typeparam name="T">Response object type.</typeparam>
+        /// <typeparam name="TResponse">Response object type.</typeparam>
         /// <param name="value">JSON serialised string.</param>
         /// <returns>Returns a deserialised object.</returns>
-        private T Deserialise<T>(string value) where T : BaseResponse
+        private TResponse Deserialise<TResponse>(string value) where TResponse : BaseResponse
         {
-            var deserialised = JsonConvert.DeserializeObject<T>(value);
+            var deserialised = JsonConvert.DeserializeObject<TResponse>(value);
             return deserialised;
         }
 

@@ -9,7 +9,7 @@ namespace Aliencube.CloudConverter.Wrapper.Interfaces
     /// <summary>
     /// This provides interfaces to the <c>ConverterWrapper</c> class.
     /// </summary>
-    public interface IConverterWrapper : IDisposable
+    public interface IConverterWrapper<T> : IDisposable where T : BaseConverterOptions
     {
         /// <summary>
         /// Converts the requested file to a designated format.
@@ -18,7 +18,7 @@ namespace Aliencube.CloudConverter.Wrapper.Interfaces
         /// <param name="output"><c>OutputParameters</c> object.</param>
         /// <param name="conversion"><c>ConversionParameters</c> object.</param>
         /// <returns>Returns the conversion response.</returns>
-        Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters conversion);
+        Task<ConvertResponseExtended> ConvertAsync(InputParameters input, OutputParameters output, ConversionParameters<T> conversion);
 
         /// <summary>
         /// Gets the <c>ProcessResponse</c> to be consumed in subsequent requests.

@@ -59,6 +59,10 @@
     <Compile Include="ConverterSettings.cs" />
     <Compile Include="Extensions\AutoMapperExtension.cs" />
     <Compile Include="Interfaces\IConverterSettings.cs" />
+    <Compile Include="Options\BaseConverterOptions.cs" />
+    <Compile Include="Options\MarkdownConverterOptionsSerialiseOptions.cs" />
+    <Compile Include="Options\MarkdownConverterOptions.cs" />
+    <Compile Include="Options\MarkdownSyntaxType.cs" />
     <Compile Include="Requests\BaseRequest.cs" />
     <Compile Include="Requests\ConvertRequestSerialiseOptions.cs" />
     <Compile Include="Responses\BaseResponse.cs" />
@@ -91,7 +95,6 @@
     <Compile Include="DataFormats\Video.cs" />
     <Compile Include="DataFormats\Website.cs" />
     <Compile Include="LowercaseContractResolver.cs" />
-    <Compile Include="Options\ConverterOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
