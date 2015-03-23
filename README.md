@@ -87,7 +87,10 @@ If you want to simply use the `appSettings` section, you can do the following in
 </configuration>
 ```
 
-> **NOTE**: Make sure that the API key **MUST** be changed to yours before running this code; otherwise you'll get an error. The API key can be obtained from [https://cloudconvert.com/user/profile](https://cloudconvert.com/user/profile), once you login.
+> **NOTE**: Make sure that:
+> 
+> * The API key **MUST** be changed to yours before running this code; otherwise you'll get an error. The API key can be obtained from [https://cloudconvert.com/user/profile](https://cloudconvert.com/user/profile), once you login.
+> * If you want to store your converted result into [Goodle Drive](https://drive.google.com), [Dropbox](https://dropbox.com) or [OneDrive](https://onedrive.live.com), your account should be linked to those services beforehand.
 
 
 ## Converter Options ##
