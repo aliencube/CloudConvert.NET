@@ -76,6 +76,8 @@ This `settings` instance comes from either `converterSettings` section or `appSe
   <converterSettings>
     <basic processUrl="https://api.cloudconvert.com/process">
       <apiKey value="3qNaQa9iNGOzFv4a2HWtFBWNFGJyyQiBoYtnJLrCUAUppnMzcvZrV7SYKF1_Q4P55zcnFbZni14poKBmCT-BaQ" />
+      <!-- if you want to use the ApiKey as a param, you can add `asHeader` attribute in apiKey element. Default value is `true`. -->
+      <!-- <apiKey value="<apikey>" asHeader="false" /> -->
     </basic>
   </converterSettings>
 </configuration>
@@ -88,6 +90,8 @@ If you want to simply use the `appSettings` section, you can do the following in
   <appSettings>
     <add key="ApiKey" value="3qNaQa9iNGOzFv4a2HWtFBWNFGJyyQiBoYtnJLrCUAUppnMzcvZrV7SYKF1_Q4P55zcnFbZni14poKBmCT-BaQ" />
     <add key="ProcessUrl" value="https://api.cloudconvert.com/process" />
+    <!-- if you want to use the ApiKey as a param, you can add `ApiKeyAsHeader`. Default value is `true`. -->
+    <!-- <add key="ApiKeyAsHeader" value="false" /> -->
   </appSettings>
 </configuration>
 ```
