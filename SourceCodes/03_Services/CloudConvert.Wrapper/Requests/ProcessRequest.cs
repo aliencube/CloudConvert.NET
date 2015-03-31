@@ -14,5 +14,10 @@ namespace Aliencube.CloudConvert.Wrapper.Requests
         /// Gets or sets the output format.
         /// </summary>
         public string OutputFormat { get; set; }
+
+        /// <summary>
+        /// Gets or sets the API Key.
+        /// </summary>
+        public string ApiKey { get; set; }
     }
 }

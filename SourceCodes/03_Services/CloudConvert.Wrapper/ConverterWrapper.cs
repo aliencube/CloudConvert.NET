@@ -105,16 +105,26 @@ namespace Aliencube.CloudConvert.Wrapper
                 throw new ArgumentNullException("outputFormat");
             }
 
-            var request = this.GetProcessRequest(inputFormat, outputFormat);
-            var serialised = this.Serialise(request);
-
             var apiKey = this._settings.Basic.ApiKey.Value;
             var processUrl = this._settings.Basic.ProcessUrl;
+            var asHeader = this._settings.Basic.ApiKey.AsHeader;
+
+            var request = this.GetProcessRequest(inputFormat, outputFormat);
+
+            if (asHeader == false)
+            {
+                request.ApiKey = apiKey;
+            }
+
+            var serialised = this.Serialise(request);
 
             ProcessResponse deserialised;
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+                if (asHeader)
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+                }
 
                 using (var content = new StringContent(serialised, Encoding.UTF8, "application/json"))
                 using (var response = await client.PostAsync(processUrl, content))
