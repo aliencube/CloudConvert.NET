@@ -56,11 +56,20 @@ namespace Aliencube.CloudConvert.Wrapper
         {
             var processUrl = ConfigurationManager.AppSettings["ProcessUrl"];
             var apiKey = ConfigurationManager.AppSettings["ApiKey"];
+            var apiKeyAsHeader = ConfigurationManager.AppSettings["ApiKeyAsHeader"];
+
             if (String.IsNullOrWhiteSpace(processUrl) || String.IsNullOrWhiteSpace(apiKey))
             {
                 return null;
             }
 
+            var asHeader = true;
+
+            if (!String.IsNullOrWhiteSpace(apiKeyAsHeader))
+            {
+                Boolean.TryParse(apiKeyAsHeader, out asHeader);    
+            }
+            
             var settings = new ConverterSettings
                            {
                                Basic = new BasicElement
@@ -69,6 +78,7 @@ namespace Aliencube.CloudConvert.Wrapper
                                            ApiKey = new ApiKeyElement
                                                     {
                                                         Value = apiKey,
+                                                        AsHeader = asHeader,
                                                     },
                                        }
                            };
