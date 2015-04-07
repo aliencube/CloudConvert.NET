@@ -13,6 +13,7 @@ namespace Aliencube.CloudConvert.Tests
         [SetUp]
         public void Init()
         {
+            this._settings = ConverterSettings.CreateInstance();
         }
 
         [TearDown]
@@ -27,13 +28,14 @@ namespace Aliencube.CloudConvert.Tests
         [Test]
         public void GetConverterSettings_GivenConfig_ReturnConverterSettings()
         {
-            this._settings = ConverterSettings.CreateInstance();
-            
             var basic = this._settings.Basic;
             basic.Should().NotBeNull();
 
             var processUrl = basic.ProcessUrl;
             processUrl.Should().NotBeNullOrWhiteSpace();
+
+            var useHeader = basic.UseHeader;
+            useHeader.Should().BeTrue();
 
             var apiKey = basic.ApiKey;
             apiKey.Value.Should().NotBeNullOrWhiteSpace();

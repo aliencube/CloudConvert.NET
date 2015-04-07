@@ -3,8 +3,13 @@ namespace Aliencube.CloudConvert.Wrapper.Requests
     /// <summary>
     /// This represents the process request entity.
     /// </summary>
-    public class ProcessRequest : BaseRequest
+    public partial class ProcessRequest : BaseRequest
     {
+        /// <summary>
+        /// Gets or sets the API key.
+        /// </summary>
+        public string ApiKey { get; set; }
+
         /// <summary>
         /// Gets or sets the input format.
         /// </summary>
