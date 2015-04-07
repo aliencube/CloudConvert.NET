@@ -19,7 +19,7 @@ Firstly, all relevant settings and parameters need to be prepared beforehand.
 
 ```csharp
 var settings = ConverterSettings.CreateInstance();
-var wrapper = new ConverterWrapper<MarkdownConverterOptions>(settings);
+var wrapper = new ConverterWrapper(settings);
 var formats = new Formats();
 var input = new InputParameters()
             {
@@ -33,7 +33,7 @@ var output = new OutputParameters()
                DownloadMethod = DownloadMethod.False,
                OutputStorage = OutputStorage.OneDrive,
              };
-var conversion = new ConversionParameters<MarkdownConverterOptions>()
+var conversion = new ConversionParameters()
                  {
                    OutputFormat = formats.Document.Docx,
                    ConverterOptions = new MarkdownConverterOptions()
@@ -74,7 +74,7 @@ This `settings` instance comes from either `converterSettings` section or `appSe
   </configSections>
 
   <converterSettings>
-    <basic processUrl="https://api.cloudconvert.com/process">
+    <basic processUrl="https://api.cloudconvert.com/process" useHeader="true">
       <apiKey value="3qNaQa9iNGOzFv4a2HWtFBWNFGJyyQiBoYtnJLrCUAUppnMzcvZrV7SYKF1_Q4P55zcnFbZni14poKBmCT-BaQ" />
     </basic>
   </converterSettings>
@@ -87,10 +87,13 @@ If you want to simply use the `appSettings` section, you can do the following in
 <configuration>
   <appSettings>
     <add key="ApiKey" value="3qNaQa9iNGOzFv4a2HWtFBWNFGJyyQiBoYtnJLrCUAUppnMzcvZrV7SYKF1_Q4P55zcnFbZni14poKBmCT-BaQ" />
+    <add key="UseHeader" value="true" />
     <add key="ProcessUrl" value="https://api.cloudconvert.com/process" />
   </appSettings>
 </configuration>
 ```
+
+You can choose whether to put API key &ndash; header or request body &ndash; by setting the `useHeader` value.
 
 > **NOTE**: Make sure that:
 > 
