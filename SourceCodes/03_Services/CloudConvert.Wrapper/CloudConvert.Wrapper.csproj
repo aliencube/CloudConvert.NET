@@ -66,6 +66,7 @@
     <Compile Include="Options\MarkdownSyntaxType.cs" />
     <Compile Include="Requests\BaseRequest.cs" />
     <Compile Include="Requests\ConvertRequestSerialiseOptions.cs" />
+    <Compile Include="Requests\ProcessRequestSerialiseOptions.cs" />
     <Compile Include="Responses\BaseResponse.cs" />
     <Compile Include="Responses\ConvertResponse.cs" />
     <Compile Include="Options\ConversionParameters.cs" />

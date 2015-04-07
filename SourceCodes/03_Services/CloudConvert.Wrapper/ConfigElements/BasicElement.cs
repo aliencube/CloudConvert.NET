@@ -18,6 +18,16 @@ namespace Aliencube.CloudConvert.Wrapper.ConfigElements
         }
 
         /// <summary>
+        /// Gets or sets the value that specifies whether to include the API key in the header or not.
+        /// </summary>
+        [ConfigurationProperty("useHeader", IsRequired = false, DefaultValue = true)]
+        public bool UseHeader
+        {
+            get { return (bool)this["useHeader"]; }
+            set { this["useHeader"] = value; }
+        }
+
+        /// <summary>
         /// Gets or sets the API key element.
         /// </summary>
         [ConfigurationProperty("apiKey", IsRequired = true)]

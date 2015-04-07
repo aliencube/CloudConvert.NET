@@ -55,6 +55,8 @@ namespace Aliencube.CloudConvert.Wrapper
         private static IConverterSettings GetFromAppSettings()
         {
             var processUrl = ConfigurationManager.AppSettings["ProcessUrl"];
+            bool result;
+            var useHeader = Boolean.TryParse(ConfigurationManager.AppSettings["UseHeader"], out result) && result;
             var apiKey = ConfigurationManager.AppSettings["ApiKey"];
             if (String.IsNullOrWhiteSpace(processUrl) || String.IsNullOrWhiteSpace(apiKey))
             {
@@ -66,6 +68,7 @@ namespace Aliencube.CloudConvert.Wrapper
                                Basic = new BasicElement
                                        {
                                            ProcessUrl = processUrl,
+                                           UseHeader = useHeader,
                                            ApiKey = new ApiKeyElement
                                                     {
                                                         Value = apiKey,
