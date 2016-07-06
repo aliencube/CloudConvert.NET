@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Aliencube.CloudConvert.Tests
 {
+    /// <summary>
+    /// Tests Converter Settings from Configuration File
+    /// </summary>
     [TestFixture]
     public class ConverterSettingsTest
     {
@@ -28,17 +31,17 @@ namespace Aliencube.CloudConvert.Tests
         [Test]
         public void GetConverterSettings_GivenConfig_ReturnConverterSettings()
         {
-            var basic = this._settings.Basic;
-            basic.Should().NotBeNull();
+            //var basic = this._settings.Basic;
+            //basic.Should().NotBeNull();
 
-            var processUrl = basic.ProcessUrl;
+            var processUrl = _settings.ProcessUrl;
             processUrl.Should().NotBeNullOrWhiteSpace();
 
-            var useHeader = basic.UseHeader;
+            var useHeader = _settings.UseHeader;
             useHeader.Should().BeTrue();
 
-            var apiKey = basic.ApiKey;
-            apiKey.Value.Should().NotBeNullOrWhiteSpace();
+            var apiKey = _settings.ApiKey;
+            apiKey.Should().NotBeNullOrWhiteSpace();
         }
     }
 }

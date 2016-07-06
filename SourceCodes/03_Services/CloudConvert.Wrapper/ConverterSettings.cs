@@ -23,6 +23,45 @@ namespace Aliencube.CloudConvert.Wrapper
         }
 
         /// <summary>
+        /// Gets the process URL.
+        /// </summary>
+        public string ProcessUrl
+        {
+            get { return this.Basic.ProcessUrl; }
+            set
+            {
+                if (this.Basic != null)
+                    this.Basic.ProcessUrl = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the value that specifies whether to include the API key in the header or not.
+        /// </summary>
+        public bool UseHeader
+        {
+            get { return this.Basic.UseHeader; }
+            set
+            {
+                if (this.Basic != null)
+                    this.Basic.UseHeader = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the ApiKey value
+        /// </summary>
+        public string ApiKey
+        {
+            get { return this.Basic?.ApiKey?.Value; }
+            set
+            {
+                if (this.Basic != null)
+                    this.Basic.ApiKey.Value = value;
+            }
+        }
+
+        /// <summary>
         /// Creates a new instance of the <c>ConverterSettings</c> class.
         /// </summary>
         /// <returns>Returns the new instance of the <c>ConverterSettings</c> class.</returns>
@@ -64,17 +103,17 @@ namespace Aliencube.CloudConvert.Wrapper
             }
 
             var settings = new ConverterSettings
-                           {
-                               Basic = new BasicElement
-                                       {
-                                           ProcessUrl = processUrl,
-                                           UseHeader = useHeader,
-                                           ApiKey = new ApiKeyElement
-                                                    {
-                                                        Value = apiKey,
-                                                    },
-                                       }
-                           };
+            {
+                Basic = new BasicElement
+                {
+                    ProcessUrl = processUrl,
+                    UseHeader = useHeader,
+                    ApiKey = new ApiKeyElement
+                    {
+                        Value = apiKey,
+                    },
+                }
+            };
             return settings;
         }
 

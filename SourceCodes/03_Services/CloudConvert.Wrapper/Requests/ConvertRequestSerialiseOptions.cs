@@ -94,7 +94,7 @@ namespace Aliencube.CloudConvert.Wrapper.Requests
         /// <returns>Returns <c>True</c>, if the <c>DownloadMethod</c> property is not null; otherwise returns <c>False</c>.</returns>
         public bool ShouldSerializeDownloadMethod()
         {
-            return !String.IsNullOrWhiteSpace(this.DownloadMethod);
+            return this.DownloadMethod != Options.DownloadMethod.None;
         }
 
         /// <summary>

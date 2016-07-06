@@ -6,6 +6,11 @@ namespace Aliencube.CloudConvert.Wrapper.Options
     public enum DownloadMethod
     {
         /// <summary>
+        /// Do not specify the download property in the request
+        /// </summary>
+        None,
+
+        /// <summary>
         /// Specifies no download is allowed.
         /// </summary>
         False,

@@ -51,7 +51,7 @@ namespace Aliencube.CloudConvert.Wrapper
                   .ForMember(d => d.Email, o => o.MapFrom(s => s.Email ? s.Email : (bool?)null))
                   .ForMember(d => d.OutputStorage, o => o.MapFrom(s => s.OutputStorage != OutputStorage.None ? s.OutputStorage.ToLower() : null))
                   .ForMember(d => d.Wait, o => o.MapFrom(s => s.Wait ? s.Wait : (bool?)null))
-                  .ForMember(d => d.DownloadMethod, o => o.MapFrom(s => s.DownloadMethod.ToLower()))
+                  //.ForMember(d => d.DownloadMethod, o => o.MapFrom(s => s.DownloadMethod.ToLower()))
                   .ForMember(d => d.SaveToServer, o => o.MapFrom(s => s.SaveToServer ? s.SaveToServer : (bool?)null));
             Mapper.CreateMap<ConversionParameters, ConvertRequest>()
                   .ForMember(d => d.Timeout, o => o.MapFrom(s => s.Timeout > 0 ? s.Timeout : (int?)null));
@@ -110,10 +110,10 @@ namespace Aliencube.CloudConvert.Wrapper
             ProcessResponse deserialised;
             using (var client = new HttpClient())
             {
-                var apiKey = this._settings.Basic.ApiKey.Value;
-                var processUrl = this._settings.Basic.ProcessUrl;
+                var apiKey = this._settings.ApiKey;
+                var processUrl = this._settings.ProcessUrl;
 
-                if (this._settings.Basic.UseHeader)
+                if (this._settings.UseHeader)
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
                 }

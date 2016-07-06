@@ -1,3 +1,5 @@
+using Aliencube.CloudConvert.Wrapper.Converters;
+using Aliencube.CloudConvert.Wrapper.Options;
 using Newtonsoft.Json;
 
 namespace Aliencube.CloudConvert.Wrapper.Requests
@@ -79,7 +81,8 @@ namespace Aliencube.CloudConvert.Wrapper.Requests
         /// </summary>
         /// <remarks>If the value is <c>true</c>, the file download immediately starts, when the conversion is completed.</remarks>
         [JsonProperty(PropertyName = "Download")]
-        public string DownloadMethod { get; set; }
+        [JsonConverter(typeof(DownloadMethodConverter))]
+        public DownloadMethod DownloadMethod { get; set; }
 
         /// <summary>
         /// Gets or sets the value whether to save the converted file on CloudConvert.com or not.
