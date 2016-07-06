@@ -9,8 +9,18 @@ namespace Aliencube.CloudConvert.Wrapper.Interfaces
     public interface IConverterSettings : IDisposable
     {
         /// <summary>
-        /// Gets or sets the basic element.
+        /// Gets the process URL.
         /// </summary>
-        BasicElement Basic { get; set; }
+        string ProcessUrl { get; }
+
+        /// <summary>
+        /// Gets the value that specifies whether to include the API key in the header or not.
+        /// </summary>
+        bool UseHeader { get; }
+
+        /// <summary>
+        /// Gets the ApiKey value
+        /// </summary>
+        string ApiKey { get; }
     }
 }

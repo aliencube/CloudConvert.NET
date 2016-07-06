@@ -1,3 +1,6 @@
+using Aliencube.CloudConvert.Wrapper.Converters;
+using Newtonsoft.Json;
+
 namespace Aliencube.CloudConvert.Wrapper.Options
 {
     /// <summary>
@@ -29,6 +32,7 @@ namespace Aliencube.CloudConvert.Wrapper.Options
         /// Gets or sets the value whether to wailt/block request until the conversion is over.
         /// </summary>
         /// <remarks>If the value is <c>true</c>, the file download immediately starts, when the conversion is completed.</remarks>
+        [JsonConverter(typeof(DownloadMethodConverter))]
         public DownloadMethod DownloadMethod { get; set; }
 
         /// <summary>
